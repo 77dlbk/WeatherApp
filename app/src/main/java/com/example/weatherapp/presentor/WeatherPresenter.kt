@@ -16,7 +16,7 @@ class WeatherPresenter(private var view: WeatherContract.View?): WeatherContract
     override fun loadData(location: String) {
         scope.launch {
             try {
-                val weatherResponse:WeatherResponse = repository.getCurrentWeather(location)
+                val weatherResponse: WeatherResponse = repository.getCurrentWeather(location)
                 view?.showWeather(weatherResponse)
             } catch (e: Exception){
                 view?.showError(e.message?:"Unknown error")

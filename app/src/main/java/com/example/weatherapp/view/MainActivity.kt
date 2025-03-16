@@ -1,5 +1,6 @@
 package com.example.weatherapp.view
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
@@ -31,8 +32,9 @@ class MainActivity : AppCompatActivity(), WeatherContract.View {
         presenter.loadData("Bishkek")
     }
 
+    @SuppressLint("SetTextI18n")
     override fun showWeather(weatherResponse: WeatherResponse) {
-
+        binding.txtCurrenttemp.text = weatherResponse.current.temp_c.toString()
     }
 
     override fun showError(message: String) {
