@@ -1,55 +1,105 @@
 package com.example.weatherapp.model.models
 
+
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class WeatherResponse(
-    val current: Current,
-    val location: Location
+    @SerialName("current")
+    var current: Current? = null,
+    @SerialName("location")
+    var location: Location? = null
 ) {
+    @Serializable
     data class Current(
-        val cloud: Int,
-        val condition: Condition,
-        val dewpoint_c: Double,
-        val dewpoint_f: Double,
-        val feelslike_c: Double,
-        val feelslike_f: Double,
-        val gust_kph: Double,
-        val gust_mph: Double,
-        val heatindex_c: Double,
-        val heatindex_f: Double,
-        val humidity: Int,
-        val is_day: Int,
-        val last_updated: String,
-        val last_updated_epoch: Int,
-        val precip_in: Double,
-        val precip_mm: Double,
-        val pressure_in: Double,
-        val pressure_mb: Double,
-        val temp_c: Double,
-        val temp_f: Double,
-        val uv: Double,
-        val vis_km: Double,
-        val vis_miles: Double,
-        val wind_degree: Int,
-        val wind_dir: String,
-        val wind_kph: Double,
-        val wind_mph: Double,
-        val windchill_c: Double,
-        val windchill_f: Double
+        @SerialName("cloud")
+        var cloud: Int? = null,
+        @SerialName("condition")
+        var condition: Condition? = null,
+        @SerialName("dewpoint_c")
+        var dewpointC: Double? = null,
+        @SerialName("dewpoint_f")
+        var dewpointF: Double? = null,
+        @SerialName("feelslike_c")
+        var feelslikeC: Double? = null,
+        @SerialName("feelslike_f")
+        var feelslikeF: Double? = null,
+        @SerialName("gust_kph")
+        var gustKph: Double? = null,
+        @SerialName("gust_mph")
+        var gustMph: Double? = null,
+        @SerialName("heatindex_c")
+        var heatindexC: Double? = null,
+        @SerialName("heatindex_f")
+        var heatindexF: Double? = null,
+        @SerialName("humidity")
+        var humidity: Int? = null,
+        @SerialName("is_day")
+        var isDay: Int? = null,
+        @SerialName("last_updated")
+        var lastUpdated: String? = null,
+        @SerialName("last_updated_epoch")
+        var lastUpdatedEpoch: Int? = null,
+        @SerialName("precip_in")
+        var precipIn: Double? = null,
+        @SerialName("precip_mm")
+        var precipMm: Double? = null,
+        @SerialName("pressure_in")
+        var pressureIn: Double? = null,
+        @SerialName("pressure_mb")
+        var pressureMb: Double? = null,
+        @SerialName("temp_c")
+        var tempC: Double? = null,
+        @SerialName("temp_f")
+        var tempF: Double? = null,
+        @SerialName("uv")
+        var uv: Double? = null,
+        @SerialName("vis_km")
+        var visKm: Double? = null,
+        @SerialName("vis_miles")
+        var visMiles: Double? = null,
+        @SerialName("wind_degree")
+        var windDegree: Int? = null,
+        @SerialName("wind_dir")
+        var windDir: String? = null,
+        @SerialName("wind_kph")
+        var windKph: Double? = null,
+        @SerialName("wind_mph")
+        var windMph: Double? = null,
+        @SerialName("windchill_c")
+        var windchillC: Double? = null,
+        @SerialName("windchill_f")
+        var windchillF: Double? = null
     ) {
+        @Serializable
         data class Condition(
-            val code: Int,
-            val icon: String,
-            val text: String
+            @SerialName("code")
+            var code: Int? = null,
+            @SerialName("icon")
+            var icon: String? = null,
+            @SerialName("text")
+            var text: String? = null
         )
     }
 
+    @Serializable
     data class Location(
-        val country: String,
-        val lat: Double,
-        val localtime: String,
-        val localtime_epoch: Int,
-        val lon: Double,
-        val name: String,
-        val region: String,
-        val tz_id: String
+        @SerialName("country")
+        var country: String? = null,
+        @SerialName("lat")
+        var lat: Double? = null,
+        @SerialName("localtime")
+        var localtime: String? = null,
+        @SerialName("localtime_epoch")
+        var localtimeEpoch: Int? = null,
+        @SerialName("lon")
+        var lon: Double? = null,
+        @SerialName("name")
+        var name: String? = null,
+        @SerialName("region")
+        var region: String? = null,
+        @SerialName("tz_id")
+        var tzId: String? = null
     )
 }

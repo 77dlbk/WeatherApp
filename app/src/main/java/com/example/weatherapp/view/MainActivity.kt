@@ -5,19 +5,21 @@ import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityMainBinding
-import com.example.weatherapp.model.models.WeatherResponse
-import com.example.weatherapp.presentor.WeatherContract
-import com.example.weatherapp.presentor.WeatherPresenter
+//import com.example.weatherapp.presentor.WeatherContract
+//import com.example.weatherapp.presentor.WeatherPresenter
+import com.example.weatherapp.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity(), WeatherContract.View {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
-    private val presenter: WeatherPresenter by lazy { WeatherPresenter(this) }
+//    private val presenter: WeatherPresenter by lazy { WeatherPresenter(this) }
+    private val viewModel:MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,20 +31,21 @@ class MainActivity : AppCompatActivity(), WeatherContract.View {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        presenter.loadData("Bishkek")
+        viewModel.getWeather()
+        initialize()
+
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun showWeather(weatherResponse: WeatherResponse) {
-        binding.txtCurrenttemp.text = weatherResponse.current.temp_c.toString()
+    private fun initialize() {
+        binding.apply {
+            viewModel.weatherResponse.observe(this@MainActivity){ response->
+                txtCurrenttemp.text = response.current?.tempC.toString()
+            }
+
+        }
     }
 
-    override fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onDestroy()
-    }
+
+
 }
