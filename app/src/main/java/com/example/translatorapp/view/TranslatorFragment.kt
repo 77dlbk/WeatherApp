@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.translatorapp.viewmodel.TranslateViewModel
-import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentTranslatorBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class TranslatorFragment : Fragment() {
 
     private lateinit var binding: FragmentTranslatorBinding

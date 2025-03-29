@@ -1,16 +1,21 @@
 package com.example.translatorapp.viewmodel
 
-import androidx.core.app.NotificationCompat.MessagingStyle.Message
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.translatorapp.model.models.TranslateResponse
 import com.example.translatorapp.repository.TranslateRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TranslateViewModel: ViewModel() {
 
-    private val repository = TranslateRepository()
+@HiltViewModel
+class TranslateViewModel
+    @Inject constructor(
+        private val repository: TranslateRepository
+    )
+: ViewModel() {
 
     private val _translateResponse = MutableLiveData<List<TranslateResponse>>()
     val translateResponse:MutableLiveData<List<TranslateResponse>> = _translateResponse

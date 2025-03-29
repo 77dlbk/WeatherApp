@@ -2,6 +2,11 @@ package com.example.translatorapp.model.core
 
 import com.example.translatorapp.model.service.TranslateService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -9,7 +14,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.create
 import java.security.Provider.Service
+import javax.inject.Singleton
 
+
+@Module
+@InstallIn(SingletonComponent::class)
 object RetrofitClient {
 
     private const val BASE_URL = "https://linguee-api.fly.dev/api/v2/"
@@ -27,6 +36,10 @@ object RetrofitClient {
     isLenient = true
     }
 
+
+    @get:Provides
+    @Singleton
+    @OptIn(ExperimentalSerializationApi::class)
      val retrofitService :Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -35,6 +48,8 @@ object RetrofitClient {
             .build()
      }
 
+    @get:Provides
+    @Singleton
     val translateService:TranslateService by lazy {
         retrofitService.create(TranslateService::class.java)
     }
