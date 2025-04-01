@@ -1,5 +1,6 @@
 package com.example.translatorapp.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ class CharacterDetailFragment : Fragment() {
 
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,10 +30,12 @@ class CharacterDetailFragment : Fragment() {
         val character = arguments?.getParcelable<CharacterResponse.Result>("character")
 
         character?.let {
-            binding.characterName.text = it.name
-            binding.characterStatus.text = it.status
-            binding.characterSpecies.text = it.species
-            binding.characterGender.text = it.gender
+            binding.characterName.text = "Имя: ${character.name}"
+            binding.characterStatus.text =  "Статус: ${character.status}"
+            binding.characterSpecies.text =  "Раса: ${character.species}"
+            binding.characterGender.text =  "Гендер: ${character.gender}"
+
+            п
             Glide.with(binding.characterImage).load(it.image).into(binding.characterImage)
         }
 
