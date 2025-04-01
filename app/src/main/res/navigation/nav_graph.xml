@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/translatorFragment">
+    app:startDestination="@id/characterFragment">
+
 
     <fragment
-        android:id="@+id/translatorFragment"
-        android:name="com.example.translatorapp.view.TranslatorFragment"
-        android:label="fragment_translator"
-        tools:layout="@layout/fragment_translator" />
+        android:id="@+id/characterFragment"
+        android:name="com.example.translatorapp.view.CharacterFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" />
 </navigation>

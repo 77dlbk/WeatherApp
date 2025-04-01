@@ -1,6 +1,6 @@
 package com.example.translatorapp.model.core
 
-import com.example.translatorapp.model.service.TranslateService
+import com.example.translatorapp.model.service.CharacterService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -21,19 +21,19 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitClient {
 
-    private const val BASE_URL = "https://linguee-api.fly.dev/api/v2/"
+    private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
     level = HttpLoggingInterceptor.Level.BODY
 
 }
     private val httpClient = OkHttpClient.Builder()
-    .addInterceptor(loggingInterceptor)
-    .build()
+        .addInterceptor(loggingInterceptor)
+        .build()
 
     private val json = Json {
-    ignoreUnknownKeys = true
-    isLenient = true
+        ignoreUnknownKeys = true
+        isLenient = true
     }
 
 
@@ -50,8 +50,8 @@ object RetrofitClient {
 
     @get:Provides
     @Singleton
-    val translateService:TranslateService by lazy {
-        retrofitService.create(TranslateService::class.java)
+    val characterService:CharacterService by lazy {
+        retrofitService.create(CharacterService::class.java)
     }
 }
 
